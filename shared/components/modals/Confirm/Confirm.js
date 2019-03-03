@@ -22,15 +22,15 @@ const defaultLanguage = defineMessages({
   },
   message: {
     id: 'confirmDialogDefaultMessage',
-    defaultMessage: 'Confirm action on this site',
+    defaultMessage: 'Confirm action on this site?',
   },
-  ok: {
-    id: 'confirmDialogDefaultOK',
-    defaultMessage: 'Ok',
+  yes: {
+    id: 'confirmDialogDefaultYes',
+    defaultMessage: 'Yes',
   },
-  cancel: {
-    id: 'confirmDialogDefaultCancel',
-    defaultMessage: 'Cancel',
+  no: {
+    id: 'confirmDialogDefaultNo',
+    defaultMessage: 'No',
   },
 })
 
@@ -77,26 +77,37 @@ export default class Confirm extends React.Component {
       data: {
         title,
         message,
-        labelOk,
-        labelCancel,
+        labelYes,
+        labelNo,
       },
     } = this.props
 
     const labels = {
       title: title || intl.formatMessage(defaultLanguage.title),
       message: message || intl.formatMessage(defaultLanguage.message),
-      ok: labelOk || intl.formatMessage(defaultLanguage.ok),
-      cancel: labelCancel || intl.formatMessage(defaultLanguage.cancel),
+      yes: labelYes || intl.formatMessage(defaultLanguage.yes),
+      no: labelNo || intl.formatMessage(defaultLanguage.no),
     }
 
     return (
-      <Modal name={name} title={labels.title}>
-        <div styleName="content">
-          <p>{labels.message}</p>
-          <Button styleName="button" brand onClick={this.handleConfirm}>{labels.ok}</Button>
-          <Button styleName="button" brand onClick={this.handleClose}>{labels.cancel}</Button>
+      <div styleName="modal-overlay" onClick={this.handleClose}>
+        <div styleName="modal">
+          <div styleName="header">
+            <WidthContainer styleName="headerContent">
+              <div styleName="title">{labels.title}</div>
+            </WidthContainer>
+          </div>
+          <div styleName="content">
+            <div styleName="notification-overlay">
+              <p styleName="notification">{labels.message}</p>
+            </div>
+            <div styleName="button-overlay">
+              <Button styleName="button" brand onClick={this.handleConfirm}>{labels.yes}</Button>
+              <Button styleName="button" gray onClick={this.handleClose}>{labels.no}</Button>
+            </div>
+          </div>
         </div>
-      </Modal>
+      </div>
     )
   }
 }
