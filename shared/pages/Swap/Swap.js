@@ -378,7 +378,6 @@ export default class SwapComponent extends PureComponent {
       stepToHide,
       isAddressCopied,
       waitWithdrawOther,
-
     } = this.state
 
     if (!swap || !SwapComponent || !peer || !isAmountMore) {

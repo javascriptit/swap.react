@@ -133,7 +133,6 @@ const createOrder = (data, isPartial = false) => {
   }
 
   actions.core.setupPartialOrder(order)
-
   return order
 }
 
