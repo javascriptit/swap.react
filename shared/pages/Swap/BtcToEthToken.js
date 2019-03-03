@@ -85,13 +85,17 @@ export default class BtcToEthToken extends Component {
         clearInterval(this.ParticipantTimer)
       }
     }, 3000)
-
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.flow !== this.state.flow) {
       this.changePaddingValue()
     }
+  }
+
+  submitSecret = () => {
+    const { secret } = this.state
+    this.swap.flow.submitSecret(secret)
   }
 
   changePaddingValue = () => {
@@ -141,11 +145,6 @@ export default class BtcToEthToken extends Component {
     })
   }
 
-  submitSecret = () => {
-    const { secret } = this.state
-    this.swap.flow.submitSecret(secret)
-  }
-
   confirmAddress = () => {
     this.swap.setDestinationBuyAddress(this.state.destinationBuyAddress)
     this.setState({ destinationAddressTimer : false })
@@ -192,7 +191,18 @@ export default class BtcToEthToken extends Component {
   }
 
   render() {
-    const { children, disabledTimer, currencyData, continueSwap, enoughBalance, history, tokenItems } = this.props
+    const {
+      children,
+      disabledTimer,
+      currencyData,
+      continueSwap,
+      enoughBalance,
+      history,
+      tokenItems,
+      waitWithdrawOther,
+      onClickCancelSwap,
+    } = this.props
+
     const {
       swap,
       flow,
@@ -205,6 +215,10 @@ export default class BtcToEthToken extends Component {
     const linked = Link.all(this, 'destinationBuyAddress')
 
     linked.destinationBuyAddress.check((value) => value !== '', 'Please enter ETH address for tokens')
+
+    const feeControllerView = <FeeControler ethAddress={ethAddress} />
+    const swapProgressView = <SwapProgress flow={flow} name="BtcToEthTokens" swap={this.props.swap} history={history} tokenItems={tokenItems} />
+
     return (
       <div>
         <div styleName="swapContainer" style={{ paddingTop: isMobile ? `${paddingContainerValue}px` : '' }}>
@@ -231,13 +245,13 @@ export default class BtcToEthToken extends Component {
             : (
               <Fragment>
                 {!continueSwap
-                  ? <FeeControler ethAddress={ethAddress} />
-                  : <SwapProgress flow={flow} name="BtcToEthTokens" swap={this.props.swap} history={history} tokenItems={tokenItems} />
+                  ? ((!waitWithdrawOther) ? feeControllerView : swapProgressView)
+                  : swapProgressView
                 }
               </Fragment>
             )
           }
-          <SwapList flow={this.state.swap.flow.state} enoughBalance={enoughBalance} swap={this.props.swap} />
+          <SwapList flow={this.state.swap.flow.state} enoughBalance={enoughBalance} swap={this.props.swap} onClickCancelSwap={onClickCancelSwap} />
         </div>
         {children}
       </div>

@@ -594,6 +594,27 @@
     ]
   },
   {
+    "id": "CurrencyTitleSeo1",
+    "message": "Цена {fullName} ({tickerName}) и Актуальный Курс Обмена.",
+    "files": [
+      "shared/pages/Currency/Currency.js"
+    ]
+  },
+  {
+    "id": "CurrencyMetaDescrTag1",
+    "message": "Узнать цену {fullName} ({tickerName}) на сегодня. Храните и Обменивайте Криптовалюту {fullName} ({tickerName}) Анонимно на Swap.Online.",
+    "files": [
+      "shared/pages/Currency/Currency.js"
+    ]
+  },
+  {
+    "id": "CurrencyH1Seo1",
+    "message": "Цена {fullName} ({tickerName}) и Актуальный Курс Обмена.",
+    "files": [
+      "shared/pages/Currency/Currency.js"
+    ]
+  },
+  {
     "id": "CurrencyWallet100",
     "message": "Отправить",
     "files": [
@@ -3305,7 +3326,7 @@
   },
   {
     "id": "partial437",
-    "message": "Обмен {sellCase} на {buyCase} всего за 60 секунд с помощью AtomicSwap",
+    "message": "Обмен {full_name1} ({ticker_name1}) на {full_name2} ({ticker_name2}) за 60 секунд",
     "files": [
       "shared/pages/PartialClosure/PartialClosure.js"
     ]
@@ -3638,6 +3659,14 @@
     ]
   },
   {
+    "id": "PartialClosureTitleTag",
+    "message": "Обмен {full_name1} ({ticker_name1}) на {full_name2} ({ticker_name2}) Атомарный Обмен за 60 секунд"
+  },
+  {
+    "id": "PartialClosureMetaDescrTag",
+    "message": "Децентрализированный обменник Swap.Online предлагает вам лучший курс обмена {full_name1} ({ticker_name1}) на {full_name2} ({ticker_name2}). Онлайн кошелек без регистрации."
+  },
+  {
     "id": "orders104",
     "message": "ЦЕНА ЗА 1 {buyCurrency}",
     "files": [
@@ -3738,14 +3767,14 @@
   },
   {
     "id": "Wallet156",
-    "message": "Welcome to Swap.Online, a decentralized cross-chain wallet based on the Atomic Swap technology.\n             Here you can safely store and promptly exchange Bitcoin, Ethereum, EOS, USD, Tether, BCH, and numerous ERC-20 tokens.\n             Swap.Online doesn’t store your keys or tokens. Our wallet operates directly in at browser, so no additional installations or downloads are required.\n             The Swap.Online service is fully decentralized as (because)all the operations with tokens are executed via the IPFS network.\n             Our team was the first who finalized Atomic Swaps with USDT and EOS in September 2018 and Litecoin blockchain was added in October 2018.\n             Our wallet addresses a real multi-chain integration with a decentralized order book, no third party involved in the exchange, no proxy-token and no token wrapping.\n             We can integrate any ERC-20 token of a project for free just in case of mutual PR-announcement.\n             In addition, we developed Swap.Button, a b2b-solution to exchange all kinds of tokens for Bitcoin and Ethereum.\n             Install Swap.Button html widget on your site and collect crypto investments for your project.\n             Start using https://swap.online/ today and enjoy the power of true decentralization.",
+    "message": "Добро пожаловать в Swap.Online, децентрализованный кошелек с cross-chain, основанный на технологии Atomic Swap. {br}Здесь вы можете безопасно хранить и быстро обменивать Биткойны, Ethereum, EOS, USD, Tether, BCH и многочисленные токены ERC-20. {br}{br}Swap.Online не хранит ваши ключи или токены. Наш кошелек работает непосредственно в браузере, поэтому никаких дополнительных установок или загрузок не требуется. {br}Сервис Swap.Online полностью децентрализован, поскольку все операции с токенами выполняются через сеть IPFS. {br}{br}Наша команда была первой, кто завершил атомные свопы с USDT и EOS в сентябре 2018 года, а блокчейн Litecoin был добавлен в октябре 2018 года. {br}Наш кошелек предназначен для реальной multi-chain интеграции с децентрализованной книгой заказов, без участия третьих лиц в обмене, без использования прокси-токена и без добавления токена. {br}Мы можем бесплатно интегрировать любой токен проекта ERC-20 на случай взаимного PR-объявления. {br}{br}Кроме того, мы разработали Swap.Button, b2b-решение для обмена всех видов токенов на Биткойны и Эфириум. {br}Установите HTML-виджет Swap.Button на свой сайт и собирайте крипто-инвестиции для вашего проекта. {br}{br}Начните использовать https://swap.online/ сегодня и наслаждайтесь силой настоящей децентрализации.",
     "files": [
       "shared/pages/Wallet/Wallet.js"
     ]
   },
   {
     "id": "PartialClosure562",
-    "message": "Swap.Online is the decentralized in-browser hot wallet based on the Atomic Swaps technology.\n            As in our wallet all blockchains interact decentralized and no-third-party way, we offer our users to exchange Bitcoin, Ethereum,\n            USD Tether, BCH and EOS for free in a couple of seconds. At the time, Swap.Online charges no commision for the order making and taking.\n            The exchange of crypto and tokens on Swap.Online is conducted in truly\n            decentralized manner as we use the Atomic Swaps technology of peer-to-peer cross-chain interaction.\n            Swap.Online uses IPFS-network for all the operational processes which results in no need for centralized server.\n            The interface of exchange seems to look like that of crypto broker, not of ordinary DEX or CEX. In a couple of clicks,\n            the user can place and take the offer, customizing the price of sent token.\n            Also, the user can exchange the given percentage of his or her amount of tokens available (e.g. ½, ¼ etc.).\n            One more advantage of the Swap.Online exchange service is the usage of one key for the full range of ERC-20 tokens.\n            By the way, if case you’re not interested in exchange of some tokens, you can hide it from the list.\n            Thus, use Swap.Online as your basic exchange for every crypto you’re holding!",
+    "message": "Swap.Online - это децентрализованный и быстрый кошелек работающий в браузере, основанный на технологии Atomic Swaps. {br}В нашем кошельке все блокчейны взаимодействуют без участия 3 стороны, и мы предлагаем всем нашим пользователям бесплатно обменять Биткойны, Ethereum, USD Tether, BCH и EOS за пару секунд. {br}{br}В настоящее время Swap.Online не взимает комиссию за оформление и получение заказа. {br}Обмен крипто-токенами в Swap.Online проводится по-настоящему децентрализованно, так как мы используем технологию атомных свопов однорангового взаимодействия между цепями. {br}{br}Swap.Online использует IPFS-сеть для всех рабочих процессов, а значит централизованного сервера просто нет. {br}Интерфейс обмена выглядит как крипто-брокер, а не как обычный DEX или CEX. За пару кликов пользователь может разместить и принять предложение, настроив цену отправляемого токена. {br}{br}Кроме того, пользователь может обменять заданный процент от своего количества доступных токенов (например, ½, ¼ и т. д.). {br}{br}Еще одним преимуществом службы обмена Swap.Online является использование одного ключа для всего диапазона токенов ERC-20. {br}Кстати, если вы не заинтересованы в обмене некоторыми токенами, вы можете скрыть их из списка. {br}Используйте Swap.Online в качестве основного обмена для каждого криптовалюты, которую вы держите и экономьте ваше время уже сегодня!",
     "files": [
       "shared/pages/PartialClosure/PartialClosure.js"
     ]
@@ -3777,10 +3806,7 @@
   },
   {
     "id": "deposit213",
-    "message": " и 0.002 ETH на gas fee ",
-    "files": [
-      "shared/pages/Swap/DepositWindow/DepositWindow.js"
-    ]
+    "message": " и 0.002 ETH на gas fee "
   },
   {
     "id": "deposit165",
@@ -3985,10 +4011,7 @@
   },
   {
     "id": "BtcToEthToken123",
-    "message": "Свап завершен!",
-    "files": [
-      "shared/pages/Swap/SwapList/steps/FourthStep.js"
-    ]
+    "message": "Свап завершен!"
   },
   {
     "id": "BtcToEthToken132",
@@ -3996,10 +4019,7 @@
   },
   {
     "id": "BtcToEthToken34",
-    "message": "Процесс подтверждения",
-    "files": [
-      "shared/pages/Swap/SwapList/steps/FirstStep.js"
-    ]
+    "message": "Процесс подтверждения"
   },
   {
     "id": "BtcToEthToken43",
@@ -4068,13 +4088,14 @@
     "id": "swappropgress332",
     "message": "Как вернуть ваши средства ?",
     "files": [
-      "shared/pages/Swap/SwapProgress/SwapProgress.js"
+      "shared/pages/Swap/Swap.js"
     ]
   },
   {
     "id": "swappropgress333",
     "message": "Транзакция возврата:",
     "files": [
+      "shared/pages/Swap/Swap.js",
       "shared/pages/Swap/SwapProgress/SwapProgress.js"
     ]
   },
@@ -4505,6 +4526,122 @@
     "message": "Отправка",
     "files": [
       "shared/pages/Swap/SwapList/steps/ThirdStep.js"
+    ]
+  },
+  {
+    "id": "decline 21",
+    "message": "Отмененые ордера!"
+  },
+  {
+    "id": "decline43",
+    "message": "Приносим свои извинения, но вы не можете начать новый своп, пока не завершите начатые ранее свопы",
+    "files": [
+      "shared/components/modals/DeclineOrdersModal/DeclineOrdersModal.js"
+    ]
+  },
+  {
+    "id": "decline49",
+    "message": "Перейти к незавершенным свопам",
+    "files": [
+      "shared/components/modals/DeclineOrdersModal/DeclineOrdersModal.js"
+    ]
+  },
+  {
+    "id": "deposit165widget",
+    "message": "Скопируйте адрес ниже и пополните его на рекомендуемую сумму {missingBalance}",
+    "files": [
+      "shared/pages/Swap/DepositWindow/DepositWindow.js"
+    ]
+  },
+  {
+    "id": "swapjs290",
+    "message": "Отменить обмен",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "swappropgress327",
+    "message": "Этот обмен отменен",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "swappropgress345",
+    "message": "Создается транзакция возврата {loader}",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "completed21",
+    "message": "Заверешено!",
+    "files": [
+      "shared/pages/Swap/SwapList/steps/FourthStep.js"
+    ]
+  },
+  {
+    "id": "Confirmation14",
+    "message": "Подтверждение",
+    "files": [
+      "shared/pages/Swap/SwapList/steps/FirstStep.js"
+    ]
+  },
+  {
+    "id": "swappropgress192",
+    "message": "Как вернуть ваши даньги ?",
+    "files": [
+      "shared/pages/Swap/SwapProgress/SwapProgress.js"
+    ]
+  },
+  {
+    "id": "swapjs394",
+    "message": "Завершить обмен",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "swappropgress358",
+    "message": "Возврат средств осущевстляется автоматическ, пожалуйста скопируйте код транзакции",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "swappropgress368",
+    "message": "Скопировано",
+    "files": [
+      "shared/pages/Swap/Swap.js"
+    ]
+  },
+  {
+    "id": "KeyActionsPane74",
+    "message": "Неоконченные свапы ({length})",
+    "files": [
+      "shared/components/KeyActionsPanel/KeyActionsPanel.js"
+    ]
+  },
+  {
+    "id": "decline21",
+    "message": "Отмененные ордера!",
+    "files": [
+      "shared/components/modals/DeclineOrdersModal/DeclineOrdersModal.js"
+    ]
+  },
+  {
+    "id": "Incompleted21",
+    "message": "Неоконченные свапы",
+    "files": [
+      "shared/components/modals/IncompletedSwaps/IncompletedSwaps.js"
+    ]
+  },
+  {
+    "id": "IncompletedSwaps49",
+    "message": "Свапы, нуждающиеся в завершении",
+    "files": [
+      "shared/components/modals/IncompletedSwaps/IncompletedSwaps.js"
     ]
   }
 ]

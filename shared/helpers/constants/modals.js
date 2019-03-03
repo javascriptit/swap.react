@@ -12,4 +12,7 @@ export default {
   EthChecker: 'EthChecker',
   ReceiveModal: 'ReceiveModal',
   DownloadModal: 'DownloadModal',
+  DeclineOrdersModal: 'DeclineOrdersModal',
+  IncompletedSwaps: 'IncompletedSwaps',
+  Confirm: 'Confirm',
 }

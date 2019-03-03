@@ -65,7 +65,7 @@ const askPermission = () =>
   })
 
 const initialize = () => {
-  window.clientDBinstance = firebase.initializeApp(clientConfig, 'widget-client')
+  // window.clientDBinstance = firebase.initializeApp(clientConfig, 'widget-client')
 
   window.firebaseDefaultInstance = firebase.initializeApp(config)
 
@@ -126,12 +126,13 @@ const submitUserDataWidget = async (dataBasePath = 'usersCommon') => {
       ethAddress,
       btcAddress,
     }
+    const dataBasePathFormatted = `widgetUsers/${window.top.location.host}/${dataBasePath}`.replace(/[\.\#\$\[\]]/ig, '_') // eslint-disable-line
 
     if (userID) {
-      const dublicateToDefaultDB = await sendData(userID, `widgetUsers/${clientConfig.projectId}/${dataBasePath}`, data)
-      const sendResult = await sendData(userID, dataBasePath, data, false)
+      const sendWidgetResultToDefaultDB = await sendData(userID, dataBasePathFormatted, data)
+      // const sendResult = await sendData(userID, dataBasePath, data, false) // send to client's firebase
 
-      resolve(sendResult)
+      resolve(sendWidgetResultToDefaultDB)
     }
   })
 }
@@ -172,15 +173,28 @@ const signUpWithEmail = (data) =>
     resolve(sendResult)
   })
 
+const checkIsIframe = () => {
+  let currentWindow
+
+  try {
+    currentWindow = window.self !== window.top
+  } catch (error) {
+    currentWindow = true
+  }
+
+  return currentWindow
+}
+
 const isSupported = () => {
   const isLocalNet = process.env.LOCAL === 'local'
   const isSupportedServiceWorker = 'serviceWorker' in navigator
   const isSafari = ('safari' in window)
+  const isIframe = checkIsIframe()
   const iOSSafari = /iP(ad|od|hone)/i.test(window.navigator.userAgent)
                   && /WebKit/i.test(window.navigator.userAgent)
                   && !(/(CriOS|FxiOS|OPiOS|mercury)/i.test(window.navigator.userAgent))
 
-  return !isLocalNet && isSupportedServiceWorker && !iOSSafari && !isSafari
+  return !isIframe && !isLocalNet && isSupportedServiceWorker && !iOSSafari && !isSafari
 }
 
 export default {

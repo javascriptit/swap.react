@@ -42,10 +42,35 @@ const declineRequest = (orderId, participantPeer) => {
   order.declineRequest(participantPeer)
 }
 
+const rememberOrder = (orderId) => {
+  reducers.rememberedOrders.savedOrders(orderId)
+  localStorage.setItem(constants.localStorage.savedOrders, JSON.stringify(getState().rememberedOrders.savedOrders))
+}
+const saveDeletedOrder = (orderId) => {
+  reducers.rememberedOrders.deletedOrders(orderId)
+  localStorage.setItem(constants.localStorage.deletedOrders, JSON.stringify(getState().rememberedOrders.deletedOrders))
+}
+
+const forgetOrders = (orderId) => {
+  reducers.rememberedOrders.forgetOrders(orderId)
+  localStorage.setItem(constants.localStorage.savedOrders, JSON.stringify(getState().rememberedOrders.savedOrders))
+}
+
+
 const removeOrder = (orderId) => {
   SwapApp.shared().services.orders.remove(orderId)
   actions.feed.deleteItemToFeed(orderId)
 }
+
+const showMyOrders = () => {
+  SwapApp.shared().services.orders.showMyOrders()
+}
+
+const hideMyOrders = () => {
+  SwapApp.shared().services.orders.hideMyOrders()
+}
+
+const hasHiddenOrders = () => SwapApp.shared().services.orders.hasHiddenOrders()
 
 const sendRequest = (orderId, destination = {}, callback) => {
   const { address: destinationAddress } = destination
@@ -102,13 +127,20 @@ const sendRequestForPartial = (orderId, newValues, destination = {}, callback) =
 }
 
 const createOrder = (data, isPartial = false) => {
+  const order = SwapApp.shared().services.orders.create(data)
   if (!isPartial) {
-    return SwapApp.shared().services.orders.create(data)
+    return order
   }
 
-  const order = SwapApp.shared().services.orders.create(data)
+  actions.core.setupPartialOrder(order)
 
-  const { price } = Pair.fromOrder(order)
+  return order
+}
+
+const setupPartialOrder = (order) => {
+  const pairData = Pair.fromOrder(order)
+  if (!pairData || !pairData.price) return
+  const { price } = pairData
 
   order.setRequestHandlerForPartial('sellAmount', ({ sellAmount }, oldOrder) => {
     const oldPair = Pair.fromOrder(oldOrder)
@@ -155,8 +187,14 @@ const createOrder = (data, isPartial = false) => {
 
     return newOrder
   })
+}
 
-  return order
+const initPartialOrders = () => {
+  SwapApp.shared().services.orders.items.forEach((order) => {
+    if (order && order.isMy && order.isPartial) {
+      actions.core.setupPartialOrder(order)
+    }
+  })
 }
 
 const requestToPeer = (event, peer, data, callback) => {
@@ -205,6 +243,8 @@ const markCoinAsVisible = (coin) => {
 }
 
 export default {
+  rememberOrder,
+  forgetOrders,
   getSwapById,
   getOrders,
   setFilter,
@@ -220,4 +260,10 @@ export default {
   markCoinAsVisible,
   requestToPeer,
   getInformationAboutSwap,
+  saveDeletedOrder,
+  hideMyOrders,
+  showMyOrders,
+  hasHiddenOrders,
+  setupPartialOrder,
+  initPartialOrders,
 }

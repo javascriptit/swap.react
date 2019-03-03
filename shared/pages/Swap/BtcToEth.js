@@ -62,6 +62,11 @@ export default class BtcToEth extends Component {
     clearInterval(this.timer)
   }
 
+  submitSecret = () => {
+    const { secret } = this.state
+    this.swap.flow.submitSecret(secret)
+  }
+
   tryRefund = () => {
     this.swap.flow.tryRefund()
   }
@@ -106,11 +111,6 @@ export default class BtcToEth extends Component {
     this.setState({ destinationAddressTimer : false })
   }
 
-  submitSecret = () => {
-    const { secret } = this.state
-    this.swap.flow.submitSecret(secret)
-  }
-
   updateBalance = () => {
     this.swap.flow.syncBalance()
   }
@@ -133,7 +133,7 @@ export default class BtcToEth extends Component {
 
 
   render() {
-    const { continueSwap, enoughBalance, swap, history, tokenItems, ethAddress, children }  = this.props
+    const { continueSwap, enoughBalance, swap, history, tokenItems, ethAddress, children, onClickCancelSwap }  = this.props
 
     const { flow, isShowingBitcoinScript, currencyData, paddingContainerValue } = this.state
 
@@ -169,9 +169,9 @@ export default class BtcToEth extends Component {
               </Fragment>
             )
           }
-          <SwapList flow={flow} name={swap.sellCurrency} swap={swap} />
+          <SwapList flow={flow} onClickCancelSwap={onClickCancelSwap} name={swap.sellCurrency} swap={swap} />
         </div>
-        {children}
+        <div styleName="swapContainerInfo">{children}</div>
       </div>
     )
   }
