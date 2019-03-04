@@ -50,6 +50,7 @@ export default class SwapComponent extends PureComponent {
     isAddressCopied: false,
     stepToHide: 0,
     swap: null,
+    receiveMessage: false,
     isMy: false,
     hideAll: false,
     ethBalance: null,
@@ -145,8 +146,9 @@ export default class SwapComponent extends PureComponent {
       }
     }
 
+
     if (this.state.swap !== null) {
-      this.state.swap.room.once('swap was canceled', () => this.receiveMessage(id))
+      this.receiveMessageChange(id)
 
       setTimeout(() => {
         if (!canCreateEthTransaction && continueSwap && requireWithdrawFeeSended) {
@@ -193,6 +195,16 @@ export default class SwapComponent extends PureComponent {
       hideAll: true,
     }))
   }
+
+  receiveMessageChange = (id) => {
+    if (!this.state.receiveMessage) {
+      this.state.swap.room.once('swap was canceled', () => this.receiveMessage(id))
+      this.setState(() => ({
+        receiveMessage: true,
+      }))
+    }
+  }
+
 
   setSaveSwapId = (orderId) => {
     let swapsId = JSON.parse(localStorage.getItem('swapId'))
