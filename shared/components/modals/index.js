@@ -32,6 +32,6 @@ export default {
   EthChecker,
   ReceiveModal,
   DownloadModal,
-
+  IncompletedSwaps,
   Confirm,
 }

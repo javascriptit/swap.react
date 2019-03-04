@@ -8,9 +8,11 @@ import { isMobile } from 'react-device-detect'
 
 import cssModules from 'react-css-modules'
 import styles from './Row.scss'
+import helpers from 'helpers'
 
 import { links, constants } from 'helpers'
 import { Link, Redirect } from 'react-router-dom'
+import SwapApp from 'swap.app'
 
 import Avatar from 'components/Avatar/Avatar'
 import InlineLoader from 'components/loaders/InlineLoader/InlineLoader'
@@ -257,7 +259,7 @@ export default class Row extends Component {
                       ) : (
                         <RequestButton
                           disabled={balance >= Number(buyAmount)}
-                          onClick={() => this.sendRequest(id, isMy ? sellCurrency : buyCurrency)}
+                          onClick={() => this.сheckDeclineOrders(id, isMy ? sellCurrency : buyCurrency)}
                           data={{ type, amount, main, total, base }}
                         >
                           {type === PAIR_TYPES.BID ? <FormattedMessage id="Row2061" defaultMessage="SELL" /> : <FormattedMessage id="Row206" defaultMessage="BUY" />}
