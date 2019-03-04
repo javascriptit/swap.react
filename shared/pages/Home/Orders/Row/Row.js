@@ -9,7 +9,7 @@ import { isMobile } from 'react-device-detect'
 import cssModules from 'react-css-modules'
 import styles from './Row.scss'
 
-import helpers, { links, constants } from 'helpers'
+import { links, constants } from 'helpers'
 import { Link, Redirect } from 'react-router-dom'
 
 import Avatar from 'components/Avatar/Avatar'
@@ -21,7 +21,6 @@ import PAIR_TYPES from 'helpers/constants/PAIR_TYPES'
 import RequestButton from '../RequestButton/RequestButton'
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl'
 import { localisedUrl } from 'helpers/locale'
-import SwapApp from 'swap.app'
 import { BigNumber } from 'bignumber.js'
 
 
@@ -71,33 +70,6 @@ export default class Row extends Component {
     })
   }
 
-  handleGoTrade = async (currency) => {
-    const balance = await actions.eth.getBalance()
-    return (balance >= 0.005 || currency.toLowerCase() === 'eos')
-  }
-
-  sendRequest = (orderId, currency) => {
-    const { row: { buyAmount, sellAmount, buyCurrency, sellCurrency }, intl } = this.props
-
-    const pair = Pair.fromOrder(this.props.row)
-    const { price, amount, total, main, base, type } = pair
-
-    const sell = new BigNumber(sellAmount).dp(6, BigNumber.ROUND_HALF_CEIL)
-    const buy = new BigNumber(buyAmount).dp(6, BigNumber.ROUND_HALF_CEIL)
-    const exchangeRates = new BigNumber(price).dp(6, BigNumber.ROUND_HALF_CEIL)
-
-    const messages = defineMessages({
-      sell: {
-        id: 'ordersRow97',
-        defaultMessage: 'sell',
-      },
-      buy: {
-        id: 'ordersRow101',
-        defaultMessage: 'buy',
-      },
-    })
-  }
-
   сheckDeclineOrders = (orderId, currency, checkCurrency) => {
     const { intl: { locale }, decline } = this.props
 
@@ -123,7 +95,31 @@ export default class Row extends Component {
     }
   }
 
-  sendRequest = async (orderId, currency) => {
+  handleGoTrade = async (currency) => {
+    const balance = await actions.eth.getBalance()
+    return (balance >= 0.005 || currency.toLowerCase() === 'eos')
+  }
+
+  sendRequest = (orderId, currency) => {
+    const { row: { buyAmount, sellAmount, buyCurrency, sellCurrency }, intl } = this.props
+
+    const pair = Pair.fromOrder(this.props.row)
+    const { price, amount, total, main, base, type } = pair
+
+    const sell = new BigNumber(sellAmount).dp(6, BigNumber.ROUND_HALF_CEIL)
+    const buy = new BigNumber(buyAmount).dp(6, BigNumber.ROUND_HALF_CEIL)
+    const exchangeRates = new BigNumber(price).dp(6, BigNumber.ROUND_HALF_CEIL)
+
+    const messages = defineMessages({
+      sell: {
+        id: 'ordersRow97',
+        defaultMessage: 'sell',
+      },
+      buy: {
+        id: 'ordersRow101',
+        defaultMessage: 'buy',
+      },
+    })
 
     actions.modals.open(constants.modals.Confirm, {
       onAccept: async () => {
@@ -261,11 +257,7 @@ export default class Row extends Component {
                       ) : (
                         <RequestButton
                           disabled={balance >= Number(buyAmount)}
-                          onClick={() => this.сheckDeclineOrders(
-                            id,
-                            isMy ? sellCurrency : buyCurrency,
-                            type === PAIR_TYPES.BID ? sellCurrency : buyCurrency,
-                          )}
+                          onClick={() => this.sendRequest(id, isMy ? sellCurrency : buyCurrency)}
                           data={{ type, amount, main, total, base }}
                         >
                           {type === PAIR_TYPES.BID ? <FormattedMessage id="Row2061" defaultMessage="SELL" /> : <FormattedMessage id="Row206" defaultMessage="BUY" />}
@@ -368,11 +360,7 @@ export default class Row extends Component {
                             <RequestButton
                               styleName="startButton"
                               disabled={balance >= Number(buyAmount)}
-                              onClick={() => this.сheckDeclineOrders(
-                                id,
-                                isMy ? sellCurrency : buyCurrency,
-                                type === PAIR_TYPES.BID ? sellCurrency : buyCurrency,
-                              )}
+                              onClick={() => this.sendRequest(id, isMy ? sellCurrency : buyCurrency)}
                               data={{ type, amount, main, total, base }}
                             >
                               <FormattedMessage id="RowM166" defaultMessage="Start" />

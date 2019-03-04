@@ -13,6 +13,7 @@ import { Modal } from 'components/modal'
 import { Button } from 'components/controls'
 import { FieldLabel, Input } from 'components/forms'
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl'
+import WidthContainer from 'components/layout/WidthContainer/WidthContainer'
 
 
 const defaultLanguage = defineMessages({
