@@ -8,9 +8,8 @@ import { isMobile } from 'react-device-detect'
 
 import cssModules from 'react-css-modules'
 import styles from './Row.scss'
-import helpers from 'helpers'
 
-import { links, constants } from 'helpers'
+import helpers, { links, constants } from 'helpers'
 import { Link, Redirect } from 'react-router-dom'
 import SwapApp from 'swap.app'
 
